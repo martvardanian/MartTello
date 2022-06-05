@@ -20,16 +20,26 @@ def print_image():
 print("Battery: " + str(battery) + "%")
 tello.takeoff()
 height_start = tello.get_height()
+print(height_start)
 
-tello.move_up(20)
-height_up20 = tello.get_height()
+tello.move_up(500)
+tello.move_up(500)
+height_up10 = tello.get_height()
+print(height_up10)
 
-tello.move_forward(10)
+tello.move_forward(500)
+tello.move_forward(500)
 print_image()
 
 tello.rotate_counter_clockwise(90)
-h = height_start + height_up20 - 18
-tello.move_down(h)
+h = height_start + height_up10 - 100
+print(h)
+if h > 500:
+    tello.move_down(h-500)
+    tello.move_down(500)
+else:
+    tello.move_down(h)
+
 
 tello.move_forward(500)
 print_image()
@@ -41,8 +51,11 @@ print_image()
 tello.rotate_counter_clockwise(90)
 print_image()
 
-tello.move_forward(20)
-tello.move_up(20)
+tello.move_back(500)
+tello.move_back(500)
+tello.move_up(500)
+tello.move_up(500)
+print_image()
 
 print("Height: " + str(height) + "cm")
 tello.land()
